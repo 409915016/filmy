@@ -1,14 +1,14 @@
 import min from 'min'
 
-import isString from './lodash/isString'
-import filmyBucket from '/models/qiniu-bucket'
+import {isString} from 'lodash'
+import filmyBucket from './qiniu-bucket'
 
 // 本地存在 核心配置数据 filmy:config 吗？
 // 存在 则获取本地数据
 // 不存在 则通过七牛云下载 config.json 然后保存在本地 filmy:config
 
 const Config = {
-  load () {
+  load (silent = false) {
     return min.exists('filmy:config')
       .then(exists => {
         if (exists) {
@@ -19,13 +19,17 @@ const Config = {
             .then(body => JSON.parse(body))
             .then(data => {
               // 从七牛云获取到的数据存入数据库中
-              min.hmset('filmy:config', data)
+              try {
+                min.hmset('filmy:config', data)
+              } catch (err) {
+                console.error(err)
+              }
               return data
             })
         }
       })
       .catch(error => {
-        alert(error + 'You must init Filmy with the administrator tools')
+        if (!silent) alert(error + 'You must init Filmy with the administrator tools.')
       })
   },
 
@@ -43,25 +47,25 @@ const Config = {
   // 根据传入要修改的 key 和 value 修改成新的 config
   // 使用 Blob 构造类二进制文件对象
   // 将文件对象使用 putFile 上传到七牛云
-  update (password, key, value) {
-    // 检查密码的变量类型
+  update (password, update = {}, silent = false) {
     if (!isString(password)) {
       throw new TypeError('Password must be a string')
     }
 
-    return filmyBucket.fetchPutToken(password)
+    return filmyBucket.fetchPutToken(password, 'config.json')
       .then(putToken => {
-        // 加载旧的配置数据
-        return Config.load()
-          .then(oldConfig => [oldConfig, putToken])
-          // 如果初始化 就传递一个空对象
-          .catch(() => [{}, putToken])
+        return Config.load(silent)
+          .then(oldConfig => [ oldConfig, putToken ])
+          .catch(() => [ {}, putToken ])
       })
-      .then(([config, putToken]) => {
-        config[key] = value
+      .then(([ config, putToken ]) => {
+        config = config || {}
 
-        // 更新数据
-        const fileData = new Blob([JSON.stringify(config)], {type: 'application/json'})
+        for (const key of Object.keys(update)) {
+          config[key] = update[key]
+        }
+
+        const fileData = new Blob([ JSON.stringify(config) ], { type: 'application/json' })
         fileData.name = 'config.json'
 
         return filmyBucket.putFile(
