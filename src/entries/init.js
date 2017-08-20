@@ -3,13 +3,12 @@ import i18n from '../libs/i18n'
 
 import filmyBucket from '../models/qiniu-bucket'
 import Config from '../models/Config'
-import openSimpleModal from 'sweetalert'
+import openSimpleModal from '../libs/simple-modal'
 
 Vue.filter('i18n', i18n)
 
 new Vue({
   el: '#init',
-
   data: {
     ak: '',
     sk: '',
@@ -21,7 +20,7 @@ new Vue({
     background_url: ''
   },
 
-  ready () {
+  mounted () {
     Config.load(true)
       .then(config => {
         if (!config) return

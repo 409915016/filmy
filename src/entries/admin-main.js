@@ -1,17 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import i18n from '../libs/i18n'
-import 'sweetalert'
-
-Vue.filter('i18n', i18n)
-
-// Promisify sweetalert
-const swalp = (...args) => {
-  return new Promise(resolve => {
-    swal(...args, (...argv) => resolve(...argv))
-  })
-}
-
 import Admin from '../components/admin/Admin.vue'
 
 // Routes
@@ -25,8 +14,13 @@ import AlbumRoute from '../router-components/admin/Album.vue'
 // Qiniu Cloud Storage Bucket Instance
 import filmyBucket from '../models/qiniu-bucket'
 
+import 'sweetalert'
+
+Vue.filter('i18n', i18n)
 // Routing the router
 Vue.use(VueRouter)
+
+
 const routes = [
   {
     path: '/',
@@ -43,11 +37,6 @@ const routes = [
     component: CategoriesRoute
   },
   {
-    path: '/settings',
-    name: 'settings',
-    component: SettingsRoute
-  },
-  {
     path: '/categories/:name',
     name: 'category',
     component: CategoryRoute
@@ -58,15 +47,27 @@ const routes = [
     component: AlbumsRoute
   },
   {
-    path: '/categories/:key',
+    path: '/albums/:key',
     name: 'album',
     component: AlbumRoute
+  },
+  {
+    path: '/settings',
+    name: 'settings',
+    component: SettingsRoute
   }
 ]
 
 const router = new VueRouter({
   routes
 })
+
+// Promisify sweetalert
+const swalp = (...args) => {
+  return new Promise(resolve => {
+    swal(...args, (...argv) => resolve(...argv))
+  })
+}
 
 // Confirm the admin password
 swalp({

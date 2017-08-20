@@ -1,7 +1,6 @@
 import min from 'min'
-
-import {isString} from 'lodash'
 import filmyBucket from './qiniu-bucket'
+import {isString, isPlainObject} from 'lodash'
 
 // 本地存在 核心配置数据 filmy:config 吗？
 // 存在 则获取本地数据
@@ -55,17 +54,17 @@ const Config = {
     return filmyBucket.fetchPutToken(password, 'config.json')
       .then(putToken => {
         return Config.load(silent)
-          .then(oldConfig => [ oldConfig, putToken ])
-          .catch(() => [ {}, putToken ])
+          .then(oldConfig => [oldConfig, putToken])
+          .catch(() => [{}, putToken])
       })
-      .then(([ config, putToken ]) => {
+      .then(([config, putToken]) => {
         config = config || {}
 
         for (const key of Object.keys(update)) {
           config[key] = update[key]
         }
 
-        const fileData = new Blob([ JSON.stringify(config) ], { type: 'application/json' })
+        const fileData = new Blob([JSON.stringify(config)], {type: 'application/json'})
         fileData.name = 'config.json'
 
         return filmyBucket.putFile(
