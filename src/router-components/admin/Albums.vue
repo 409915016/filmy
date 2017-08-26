@@ -90,6 +90,7 @@
       },
       patchCategoryInfo (albums = this.albums, categories = this.categories) {
         for (const album of albums) {
+          console.log()
           album.categoryTitle = categories
             .filter(n => n.name === album.category)
             .shift()

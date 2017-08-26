@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import i18n from '../libs/i18n'
 import Admin from '../components/admin/Admin.vue'
+import { store } from '../store/index'
 
 // Routes
 import DashboardRoute from '../router-components/admin/Dashboard.vue'
@@ -19,7 +20,6 @@ import 'sweetalert'
 Vue.filter('i18n', i18n)
 // Routing the router
 Vue.use(VueRouter)
-
 
 const routes = [
   {
@@ -91,6 +91,7 @@ swalp({
     })
     // router.start(Admin, '#admin')
     new Vue({
+      store,
       el: '#admin',
       router: router,
       render: h => h(Admin)

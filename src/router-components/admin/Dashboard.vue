@@ -66,7 +66,7 @@
                 .length / albums.length
           }
           this.categories = categories
-          this.$route.app.$refs.sidebar.update(
+          this.$router.app.$refs.sidebar.update(
             categories.length, albums.length
           )
         })
