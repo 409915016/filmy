@@ -2,7 +2,7 @@ import min from 'min'
 import Model from 'min-model'
 import {isString} from 'lodash'
 import filmyBucket from './qiniu-bucket'
-import ChineseStringIndexer from '/libs/chinese-string-indexer'
+import ChineseStringIndexer from '../libs/chinese-string-indexer'
 
 Model.use(min)
 
@@ -14,8 +14,8 @@ const Album = Model.extend('album', {
   photos: Array
 })
 
-Album.setIndexerForColumn('title', ChineseStringIndexer)
-Album.setIndexerForColumn('content', ChineseStringIndexer)
+// Album.setIndexerForColumn('title', ChineseStringIndexer)
+// Album.setIndexerForColumn('content', ChineseStringIndexer)
 Album.setIndex('title')
 Album.setIndex('content')
 

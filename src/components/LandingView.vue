@@ -3,7 +3,7 @@
     <div id="landing-background" :style="backgroundStyle"></div>
     <div id="landing-content">
       <h1 id="landing-title" v-if="config.title">{{config.title}}</h1>
-      <p id="landing-desc">{{{config.description || '' | cr2br }}}</p>
+      <p id="landing-desc">{{config.description || '' | cr2br }}</p>
     </div>
     <a class="scroll-down icon-arrow-left"></a>
   </div>

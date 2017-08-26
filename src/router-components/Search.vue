@@ -27,7 +27,7 @@
         albums: []
       }
     },
-    ready () {
+    mounted () {
       const query = decodeURIComponent(this.$route.params.query)
       this.search(query)
       this.$on('search', query => this.search(query))

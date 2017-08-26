@@ -1,11 +1,10 @@
 <template>
   <div id="content">
     <div id="content-categories">
-      <category v-for="category in categories"
-                :category="category.getCacheData()"
-                v-link="{ path: '/category/' + category.getCacheData('name') }"
-      >
-      </category>
+      <router-link v-for="category in categories" :to="{ path: '/category/' + category.getCacheData('name') }">
+        <Category :category="category.getCacheData()">
+        </Category>
+      </router-link>
     </div>
   </div>
 </template>
@@ -15,7 +14,7 @@
   export default {
     props: ['categories'],
     components: {
-      Category: CategoryItem
+      Category: CategoryItem // <Category :category="category.getCacheData()"></Category>
     }
   }
 </script>

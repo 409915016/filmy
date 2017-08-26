@@ -2,7 +2,7 @@
   <div id="landing">
     <search-bar :router="$route.router"></search-bar>
     <landing-view :config="config"></landing-view>
-    <content :categories="categories"></content>
+    <Content :categories="categories"></Content>
   </div>
 </template>
 
@@ -20,7 +20,7 @@
         categories: []
       }
     },
-    ready () {
+    mounted () {
       Promise.all([
         Config.load(),
         Category.load()
@@ -28,13 +28,19 @@
         .then(([config, categories]) => {
           this.config = config
           this.categories = categories
-          this.$dispatch('update-blog-title', this.config.title)
-          this.$dispatch('update-title', '')
+          console.log(config)
+          console.log(categories)
+          console.log(categories instanceof Array)
+//          this.$dispatch('update-blog-title', this.config.title)
+//          this.$dispatch('update-title', '')
+          // emit
+          this.$emit('update-blog-title', this.config.title)
+          this.$emit('update-title', '')
         })
     },
     components: {
       LandingView,
-      Content,
+      Content, // <Content :categories="categories"></Content>
       SearchBar
     }
   }
