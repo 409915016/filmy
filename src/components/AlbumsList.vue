@@ -1,12 +1,16 @@
 <template>
   <div id="category-albums">
-    <div v-if="albums.length > 0" class="album" v-for="album in albums" v-link="{ path: `/album/${album._key}` }">
-      <div class="album-image">
-        <img class="lazyload" :data-src="album.photos[0] | thumbnail">
-        <span class="album-title">{{album.title}}</span>
+    <!--分类中 相册列表-->
+    <router-link v-for="album in albums" :to="{ path: `/album/${album._key}` }">
+      <div v-if="albums.length > 0" class="album" >
+        <div class="album-image">
+          <img class="lazyload" :data-src="album.photos[0] | thumbnail">
+          <span class="album-title">{{album.title}}</span>
+        </div>
       </div>
-    </div>
-    <span v-if="albums.length == 0" id="empty">暂无相册</span>
+      <span v-if="albums.length == 0" id="empty">暂无相册</span>
+    </router-link>
+
 
     <span id="eof">EOF</span>
   </div>

@@ -1,7 +1,7 @@
 <template>
   <div id="category">
-    <a class="back back-white" v-link="{ path: '/' }"><span class="icon-arrow-left"></span>
-      <span>{{ 'home' | i18n | toUpperCase }}</span></a>
+    <router-link class="back back-white" to="/"><span class="icon-arrow-left"></span>
+      <span>{{ 'home' | i18n | toUpperCase }}</span></router-link>
 
     <search-bar :router="$route.router" :options="{ category: $route.params.name }"></search-bar>
     <category :category="category" as-title="true"></category>
@@ -24,7 +24,7 @@
         albums: []
       }
     },
-    ready () {
+    mounted () {
       Promise.all([
         Category.loadIfNotInit()
           .then(() => Category.search('name', this.$route.params.name))
@@ -34,7 +34,8 @@
         .then(([category, albums]) => {
           this.category = category.getCacheData()
           this.albums = albums.map(n => n.getCacheData())
-          this.$dispatch('update-title', this.category.title)
+          // this.$dispatch('update-title', this.category.title)
+          this.$emit('update-title', this.category.title)
         })
     },
     components: {

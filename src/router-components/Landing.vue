@@ -28,9 +28,6 @@
         .then(([config, categories]) => {
           this.config = config
           this.categories = categories
-          console.log(config)
-          console.log(categories)
-          console.log(categories instanceof Array)
 //          this.$dispatch('update-blog-title', this.config.title)
 //          this.$dispatch('update-title', '')
           // emit

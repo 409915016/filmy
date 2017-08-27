@@ -1,7 +1,9 @@
 <template>
   <div id="album">
-    <a id="back" v-link="{ path: `/category/${this.album.category}` }"><span class="icon-arrow-left"></span> <span
-      class="home-text">{{ 'back' | i18n | toUpperCase }}</span></a>
+    <router-link id="back" :to="{ path: `/category/${this.album.category}` }">
+      <span class="icon-arrow-left"></span>
+      <span class="home-text">{{ 'back' | i18n | toUpperCase }}</span>
+    </router-link>
     <h1 id="album-title">{{album.title}}</h1>
 
     <album-info :content="album.content"></album-info>
@@ -21,7 +23,7 @@
         album: {}
       }
     },
-    ready () {
+    mounted () {
       Album.loadIfNotInit()
         .then(() => Album.fetch(this.$route.params.key))
         .then(res => res.getCacheData())
@@ -30,7 +32,8 @@
           return Category.search('name', album.category)
         })
         .then(([category]) => {
-          this.$dispatch('update-title', `${this.album.title} - ${category.getCacheData().title}`)
+          // this.$dispatch('update-title', `${this.album.title} - ${category.getCacheData().title}`)
+          this.$emit('update-title', `${this.album.title} - ${category.getCacheData().title}`)
         })
     },
     components: {
