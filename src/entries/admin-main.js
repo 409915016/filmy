@@ -82,7 +82,6 @@ swalp({
 // Check the password
   .then(password => filmyBucket.fetchPutToken(password))
   .then(() => {
-    console.log('success')
     swal({
       type: 'success',
       title: i18n('welcome back'),

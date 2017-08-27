@@ -22,7 +22,7 @@
     <h3>{{'rates of categories' | i18n}}</h3>
 
     <div class="progress">
-      <div v-for="category in categories" class='progress-bar' v-bind:class="pickBarColor"
+      <div v-for="category in categories" v-bind:class="[{'progress-bar': true}, pickBarColor()]"
            v-bind:style="{ width: category.rate * 100 + '%' }"></div>
     </div>
     <div class="progress-labels">
@@ -76,7 +76,8 @@
         let last = null
         const colors = ['success', 'primary', 'info', 'warning', 'danger']
         return function pickOne () {
-          const color = 'progress-bar-' + toString(colors[Math.round(Math.random() * (colors.length - 1))])
+          const color = 'progress-bar-' + (colors[Math.round(Math.random() * (colors.length - 1))]).toString()
+          console.log(color)
           if (color === last) {
             return pickOne()
           } else {
@@ -85,6 +86,14 @@
           }
         }
       })()
+
+    },
+    computed: {
+      pickBarAndColor: function () {
+        return {
+          'progress-bar': true
+        }
+      }
     }
   }
 </script>
