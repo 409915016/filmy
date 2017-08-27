@@ -36,6 +36,7 @@
 <script>
   import Category from '../../models/Category'
   import Album from '../../models/Album'
+  import { sideBarBus } from '../../entries/admin-main'
   export default {
     data () {
       return {
@@ -66,9 +67,10 @@
                 .length / albums.length
           }
           this.categories = categories
-          this.$router.app.$refs.sidebar.update(
-            categories.length, albums.length
-          )
+//          this.$router.app.$refs.sidebar.update(
+//            categories.length, albums.length
+//          )
+          sideBarBus.$emit('sideBarUpdate', categories.length, albums.length)
         })
     },
     methods: {
@@ -77,7 +79,6 @@
         const colors = ['success', 'primary', 'info', 'warning', 'danger']
         return function pickOne () {
           const color = 'progress-bar-' + (colors[Math.round(Math.random() * (colors.length - 1))]).toString()
-          console.log(color)
           if (color === last) {
             return pickOne()
           } else {

@@ -28,7 +28,14 @@
 </template>
 
 <script>
+  import {sideBarBus} from '../../entries/admin-main'
   export default {
+    created () {
+      sideBarBus.$on('sideBarUpdate', (categories, albums) => {
+        this.categories = categories
+        this.albums = albums
+      })
+    },
     data () {
       return {
         categories: 0,
@@ -49,10 +56,10 @@
       })
     },
     methods: {
-      update (categories = this.categories, albums = this.albums) {
-        this.categories = categories
-        this.albums = albums
-      }
+//      update (categories = this.categories, albums = this.albums) {
+//        this.categories = categories
+//        this.albums = albums
+//      }
     }
   }
 </script>
