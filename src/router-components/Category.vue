@@ -4,7 +4,7 @@
       <span>{{ 'home' | i18n | toUpperCase }}</span></router-link>
 
     <search-bar :router="$route.router" :options="{ category: $route.params.name }"></search-bar>
-    <category :category="category" as-title="true"></category>
+    <Category :category="category" as-title="true"></Category>
 
     <albums-list :albums="albums"></albums-list>
   </div>
