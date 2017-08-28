@@ -1,8 +1,7 @@
-
 import min from 'min'
 import Model from 'min-model'
 import filmyBucket from './qiniu-bucket'
-import ChineseStringIndexer from '/libs/chinese-string-indexer'
+import ChineseStringIndexer from '../libs/chinese-string-indexer'
 import {isString} from 'lodash'
 
 Model.use(min)
@@ -46,7 +45,7 @@ Category.load = function () {
       )
     })
     .then(categories => categories.sort((a, b) => a.getCacheData().created_at < b.getCacheData().created_at))
-    .catch(error => [])
+    .catch(error => [error])
 }
 
 Category.loadIfNotInit = function () {

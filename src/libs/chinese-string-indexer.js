@@ -1,19 +1,17 @@
 import Model from 'min-model'
 
 class ChineseStringIndexer extends Model.BaseIndexer {
-  get async() {
+  get async () {
     return true
   }
 
-  indexMapper(val) {
-
+  indexMapper (val) {
     const url =
       `http://api.pullword.com/get?source=${encodeURIComponent(val)}&threshold=0.5&json=1`
 
-    return fetch(url)
+    return fetch(url, {method: 'POST'})
       .then(res => res.json())
       .catch(() => [val])
-
   }
 }
 
