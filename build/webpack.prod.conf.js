@@ -52,20 +52,51 @@ var webpackConfig = merge(baseWebpackConfig, {
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
-    // new HtmlWebpackPlugin({
-    //   filename: config.build.index,
-    //   template: 'index.html',
-    //   inject: true,
-    //   minify: {
-    //     removeComments: true,
-    //     collapseWhitespace: true,
-    //     removeAttributeQuotes: true
-    //     // more options:
-    //     // https://github.com/kangax/html-minifier#options-quick-reference
-    //   },
-    //   // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-    //   chunksSortMode: 'dependency'
-    // }),
+    new HtmlWebpackPlugin({
+      filename: config.build.index,
+      template: 'src/index.html',
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+        // more options:
+        // https://github.com/kangax/html-minifier#options-quick-reference
+      },
+      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      chunksSortMode: 'dependency',
+      chunks: ['web', 'manifest', 'vendor']
+    }),
+    new HtmlWebpackPlugin({
+      filename: '../dist/init.html',
+      template: 'src/init.html',
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+        // more options:
+        // https://github.com/kangax/html-minifier#options-quick-reference
+      },
+      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      chunksSortMode: 'dependency',
+      chunks: ['init', 'manifest', 'vendor']
+    }),
+    new HtmlWebpackPlugin({
+      filename: '../dist/admin.html',
+      template: 'src/admin.html',
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: true
+        // more options:
+        // https://github.com/kangax/html-minifier#options-quick-reference
+      },
+      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+      chunksSortMode: 'dependency',
+      chunks: ['admin', 'manifest', 'vendor']
+    }),
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
