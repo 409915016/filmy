@@ -37,7 +37,7 @@ yarn run build
 
 1. 修改储存域名
  
-- 构建生产版本时，请修改 `src/*.html` 中的 `window.qiniuBucketUrl` 为您的储存域名。
+- 构建生产版本时，请修改 `src/*.html` 中的 `window.qiniuBucketUrl` 为您的储存空间域名。
 按照原文具有三个入口：
    - `init.html` 
    - `admin.html` 
@@ -50,7 +50,7 @@ yarn run build
   window.qiniuBucketUrl = 'http://example.bkt.clouddn.com'
   ```
 
--  修改 `src\models\qiniu-bucket.js` 中 **4行 20行** 为您的储存域名。
+-  修改 `src\models\qiniu-bucket.js` 中 **4行 20行** 为您的储存空间名称。
 
   ``` javascript
   //src\models\qiniu-bucket.js line 4, 20
@@ -97,9 +97,12 @@ uploadUrl: 'up-z2.qiniu.com'
 本机修改过后的设置储存在本地即时生效，而七牛云储使用了 CDN 分发，其中又浏览器获取的 `*.json` 是经过缓存的。
 而反而获取的是旧的经过缓存的 Local Storage 数据覆盖到本地。解决方案:
 
- - **程序设计错误**
+ - ~~**程序设计错误**~~
    
-   ~~由于本地存在了 Local Storage 数据，并不会去重新下载服务器上新的数据了，而是直接使用旧的数据。~~ v0.2 版本已修复
+   本案例设计的缘由是针对框架和语法学习，相册封面修改也仅仅在本机后立即生效，通过分类 URL 分享到其他设备中查看最新的图片。
+   
+   清除 Local Storage 数据或许是最优解。由于本地存在了 Local Storage 数据，并不会去重新下载服务器上新的数据了，而是直接使用旧的数据。
+   
 
  - **URL 问号传参刷新** 
    
