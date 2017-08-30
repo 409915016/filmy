@@ -23,8 +23,11 @@ Category.load = function () {
   return Category.allInstances()
     .then(categories => {
       if (categories.length > 0) {
-        ready = true
-        return categories
+        // ready = true
+        // return categories
+        // 每次打开页面都去获取 categories.json
+        return filmyBucket.getFile('categories.json')
+          .then(body => JSON.parse(body))
       } else {
         return filmyBucket.getFile('categories.json')
           .then(body => JSON.parse(body))
