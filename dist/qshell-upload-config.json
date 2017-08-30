@@ -1,0 +1,15 @@
+{
+  "src_dir"            :   "E:\\phpStudy\\WWW\\filmy\\dist",
+  "bucket"             :   "mather",
+  "up_host"            :   "http://up-z2.qiniu.com",
+  "ignore_dir"         :   false,
+  "overwrite"          :   false,
+  "check_exists"       :   false,
+  "check_hash"         :   false,
+  "check_size"         :   false,
+  "rescan_local"       :   true,
+  "skip_file_prefixes" :   "test,demo,",
+  "skip_path_prefixes" :   "hello/,temp/",
+  "skip_fixed_strings" :   ".svn,.git",
+  "skip_suffixes"      :   ".DS_Store,.exe"
+}
