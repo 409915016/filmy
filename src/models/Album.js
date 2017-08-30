@@ -33,11 +33,8 @@ Album.load = function () {
   return Album.allInstances()
     .then(albums => {
       if (albums.length > 0) {
-        // ready = true
-        // return albums
-        // 每次打开页面都去获取 albums.json
-        return filmyBucket.getFile('albums.json')
-          .then(body => JSON.parse(body))
+        ready = true
+        return albums
       } else {
         return filmyBucket.getFile('albums.json')
           .then(body => JSON.parse(body))

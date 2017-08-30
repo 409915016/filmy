@@ -242,19 +242,7 @@ var Config = {
     return __WEBPACK_IMPORTED_MODULE_4_min___default.a.exists('filmy:config').then(function (exists) {
       if (exists) {
         // 从数据库中获取核心配置数据
-        // return min.hgetall('filmy:config')
-        // 每次打开页面都去获取 config.json
-        return __WEBPACK_IMPORTED_MODULE_5__qiniu_bucket__["a" /* default */].getFile('config.json').then(function (body) {
-          return JSON.parse(body);
-        }).then(function (data) {
-          // 从七牛云获取到的数据存入数据库中
-          try {
-            __WEBPACK_IMPORTED_MODULE_4_min___default.a.hmset('filmy:config', data);
-          } catch (err) {
-            console.error(err);
-          }
-          return data;
-        });
+        return __WEBPACK_IMPORTED_MODULE_4_min___default.a.hgetall('filmy:config');
       } else {
         return __WEBPACK_IMPORTED_MODULE_5__qiniu_bucket__["a" /* default */].getFile('config.json').then(function (body) {
           return JSON.parse(body);

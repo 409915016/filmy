@@ -12,19 +12,7 @@ const Config = {
       .then(exists => {
         if (exists) {
           // 从数据库中获取核心配置数据
-          // return min.hgetall('filmy:config')
-          // 每次打开页面都去获取 config.json
-          return filmyBucket.getFile('config.json')
-            .then(body => JSON.parse(body))
-            .then(data => {
-              // 从七牛云获取到的数据存入数据库中
-              try {
-                min.hmset('filmy:config', data)
-              } catch (err) {
-                console.error(err)
-              }
-              return data
-            })
+          return min.hgetall('filmy:config')
         } else {
           return filmyBucket.getFile('config.json')
             .then(body => JSON.parse(body))
