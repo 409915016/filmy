@@ -53,7 +53,7 @@ yarn run build
 -  修改 `src\models\qiniu-bucket.js` 中 **4行 20行** 为您的储存域名。
 
   ``` javascript
-  //src\models\qiniu-bucket.js
+  //src\models\qiniu-bucket.js line 4, 20
    mather 
    => 
    yourBucketName
@@ -77,16 +77,50 @@ yarn run build
  
 ## FAQ
 
-####　error incorrent zone, please use up-z2.qiniu.com
+#### error incorrent zone, please use up-z2.qiniu.com
 
 七牛云储存空间与上传域名不匹配的 Http Request 报错，
 根据 [存储区域](https://developer.qiniu.com/kodo/manual/1671/region-endpoint)，
 将 `node_modules\qiniu.js\dist\qiniu.js` 2108 行中 `up.qiniu.com` 为改为储存空间相对应的上传域名：
 
 ``` javascript
+//node_modules\qiniu.js\dist\qiniu.js line 2108
 uploadUrl: 'up-z2.qiniu.com'
 ```
-如果你使用的是**华南**区域，使用 `src/libs/qiniu.js` 中我为你修改好的文件覆盖即可。
-    
+如果你使用的是**华南**区域，直接使用 `src/libs` 目录中我为你修改好的 `qiniu.js` 文件覆盖即可。
+
+#### 修改了分类或相册数据，然而在其他设备并没有生效？
+
+本项目使用了 [MinDB](https://github.com/iwillwen/mindb) 作为本地化储存。
+若是修改了相册封面或其他设置，在七牛储存空间中的 `*.json` 确实是记录了最后一次修改的数据。
+
+本机修改过后的设置储存在本地即时生效，而七牛云储使用了 CDN 分发，其中又浏览器获取的 `*.json` 是经过缓存的。
+而反而获取的是旧的经过缓存的 Local Storage 数据覆盖到本地。解决方案:
+
+ - **程序设计错误**
+   
+   ~~由于本地存在了 Local Storage 数据，并不会去重新下载服务器上新的数据了，而是直接使用旧的数据。~~ v0.2 版本已修复
+
+ - **URL 问号传参刷新** 
+   
+   查看七牛云文档 [刷新缓存和生效时间](https://developer.qiniu.com/fusion/kb/1325/refresh-the-cache-and-the-effect-of-time)，
+   修改 `node_modules\qiniu.js\dist\qiniu.js` **1795行**中 `url` 参数的设置为：
+   
+   ``` javascript
+   //line 1795
+   url = utils.format('http://%s.qiniudn.com/%s?v=%s&token=%s', _this3.name, key, time, getToken);
+   ```
+   
+   太麻烦？直接使用 `src/libs` 目录中我为你修改好的 `qiniu.js` 文件覆盖即可。
+
+ - **在七牛云存储上刷新**
+   
+   见七牛云文档 [刷新缓存和生效时间 - 二、在七牛云存储上刷新](https://developer.qiniu.com/fusion/kb/1325/refresh-the-cache-and-the-effect-of-time)，
+  
+
+  
+  
+
+
 
 
