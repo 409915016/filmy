@@ -37,27 +37,29 @@ yarn run build
 
 1. 修改储存域名
  
-- 构建生产版本时，请修改 `src/*.html` 中的 `window.qiniuBucketUrl` 为您的储存空间域名。
-按照原文具有三个入口：
+- 构建生产版本时，按照原文具有三个入口：
+
    - `init.html` 
    - `admin.html` 
    - `index.html` 
- 
-  ``` javascript
-  //src/*.html
-  window.qiniuBucketUrl = 'http://oq1ecwbwl.bkt.clouddn.com'
-  =>
-  window.qiniuBucketUrl = 'http://example.bkt.clouddn.com'
-  ```
+   
+   请分别修改 `src/*.html` 中的 `window.qiniuBucketUrl` 为您的储存空间域名：
+   
+    ``` javascript
+    //src/*.html
+    window.qiniuBucketUrl = 'http://oq1ecwbwl.bkt.clouddn.com'
+    =>
+    window.qiniuBucketUrl = 'http://example.bkt.clouddn.com'
+    ```
 
 -  修改 `src\models\qiniu-bucket.js` 中 **4行 20行** 为您的储存空间名称。
 
-  ``` javascript
-  //src\models\qiniu-bucket.js line 4, 20
-   mather 
-   => 
-   yourBucketName
-  ```
+    ``` javascript
+    //src\models\qiniu-bucket.js line 4, 20
+     mather 
+     => 
+     yourBucketName
+    ```
 
 2. 制作上传凭证 
 
