@@ -2,7 +2,7 @@
 
 <p align="center">
   <a href="http://oq1ecwbwl.bkt.clouddn.com">
-    <img src="http://job.misaka.im/code/indeximage/filmy.png" width=980 height=522>
+    <img src="http://job.misaka.im/code/indeximage/filmy.png" width=800 height=426>
   </a>
 
   <h3 align="center">Filmy</h3>
