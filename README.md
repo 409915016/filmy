@@ -8,9 +8,9 @@
   <h3 align="center">Filmy</h3>
 
   <p align="center">
-    本项目原自
+    本项目源自
     <br>
-    <a href="https://getbootstrap.com/docs/4.0"><strong>iwillwen/filmy</strong></a>
+    <a href="https://github.com/iwillwen/filmy"><strong>iwillwen/filmy</strong></a>
     <br>
     <br>
     是
@@ -136,7 +136,7 @@ uploadUrl: 'up-z2.qiniu.com'
 
  - **在七牛云存储上刷新**
    
-   见七牛云文档 [刷新缓存和生效时间 - 二、在七牛云存储上刷新](https://developer.qiniu.com/fusion/kb/1325/refresh-the-cache-and-the-effect-of-time)，
+   见七牛云文档 [刷新缓存和生效时间 - 二、在七牛云存储上刷新](https://developer.qiniu.com/fusion/kb/1325/refresh-the-cache-and-the-effect-of-time)
   
 
   
