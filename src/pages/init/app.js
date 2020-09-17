@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Vue from 'vue'
 import i18n from '@/libs/i18n'
 
@@ -115,9 +116,9 @@ new Vue({
                         'Congratulation!',
                         'Your Filmy is ready for use.',
                         `
-              <a href="${url}" class="btn btn-primary" role="button">Go to Filmy</a>
-              <a href="${adminUrl}" class="btn" role="button">Go to Admin Tools</a>
-            `
+                          <a href="${url}" class="btn btn-primary" role="button">Go to Filmy</a>
+                          <a href="${adminUrl}" class="btn" role="button">Go to Admin Tools</a>
+                        `
                     )
                 })
                 .catch(err => {
