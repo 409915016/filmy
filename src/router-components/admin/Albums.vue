@@ -7,7 +7,9 @@
     <div class="row">
       <ul class="nav nav-pills col-sm-7">
         <li role="presentation" @click="showCategory()"><a>{{'all' | i18n}}</a></li>
-        <li role="presentation" v-for="category in categories" @click="showCategory(category)"><a>{{category.title}}</a>
+        <li role="presentation" v-for="category in categories"
+            :key="category.title"
+            @click="showCategory(category)"><a>{{category.title}}</a>
         </li>
       </ul>
 
@@ -31,6 +33,7 @@
       <router-link
         class="album img-rounded"
         v-for="album in albums"
+        :key="album._key"
         :to="{ path: `/albums/${album._key}` }"
       >
         <h3 class="album-title">{{album.title}} <span class="category">{{album.categoryTitle}}</span></h3>
