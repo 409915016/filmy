@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  import {sideBarBus} from '../../entries/admin-main'
+  import {sideBarBus} from '@/pages/admin/app'
   export default {
     created () {
       sideBarBus.$on('sideBarUpdate', (categories, albums) => {

@@ -1,52 +1,61 @@
-import qiniu from 'qiniu.js'
+import qiniu  from 'qiniu.js'
 import crypto from 'crypto-browserify'
+import { bucketName, qiniuBucketDomainName,
+    qiniuAccessKey as ak, qiniuSecretKey as sk,
+    qiniuUploadUrl as uploadUrl } from '@/configs'
 
-const filmyBucket = qiniu.bucket('mather', {
-  // url: (qiniuBucketUrl ? qiniuBucketUrl : `${location.protocol}//${location.host}`)
-  url: 'http://oq1ecwbwl.bkt.clouddn.com'
+qiniu.config({
+    uploadUrl
+});
+
+const filmyBucket = qiniu.bucket(bucketName, {
+    // url: (qiniuBucketUrl ? qiniuBucketUrl : `${location.protocol}//${location.host}`)
+    url: `//${ qiniuBucketDomainName }`
 })
 
 function getKeys (password) {
-  return filmyBucket.getFile(`secret-${password}.json`)
-    .then(body => JSON.parse(body))
+    // return filmyBucket.getFile(`filmy/secret-${password}.json`)
+    //   .then(body => JSON.parse(body))
+    // return ak sk
+    return {ak, sk}
 }
-// incorrect region, please use up-z2.qiniu.com
-// in qiniu.js
+
 filmyBucket.fetchPutToken = function (password, key = null, keys = null, returnBody = null) {
-  return (keys ? Promise.resolve(keys) : getKeys(password))
-    .then(keys => {
-      const options = {
-        // qiniu bucket name
-        scope: 'mather' + (key ? `:${key}` : ''),
-        deadline: Math.floor(Date.now() / 1000) + 3600
-      }
+    return (keys ? Promise.resolve(keys) : getKeys(password))
+      .then(keys => {
+          const options = {
+              scope   : bucketName + (key ? `:${ key }` : ''),
+              deadline: Math.floor(Date.now() / 1000) + 3600
+          }
 
-      if (returnBody) options.returnBody = returnBody
+          if (returnBody) options.returnBody = returnBody
 
-      // Signture
-      const signture = safeEncode(JSON.stringify(options))
+          // Signture
+          const signture = safeEncode(JSON.stringify(options))
 
-      // Encode Digest
-      const encodeDigest = encodeSign(signture, keys.sk)
+          // Encode Digest
+          const encodeDigest = encodeSign(signture, keys.sk)
 
-      // Put token
-      const token = `${keys.ak}:${encodeDigest}:${signture}`
+          // Put token
+          const token = `${ keys.ak }:${ encodeDigest }:${ signture }`
 
-      return token
-    })
+          debugger
+
+          return token
+      })
 }
 
 function safeEncode (str) {
-  return btoa(str).replace(/\//g, '_').replace(/\+/g, '-')
+    return btoa(str).replace(/\//g, '_').replace(/\+/g, '-')
 }
 
 function encodeSign (str, key) {
-  return crypto
-    .createHmac('sha1', key)
-    .update(str)
-    .digest('base64')
-    .replace(/\//g, '_')
-    .replace(/\+/g, '-')
+    return crypto
+      .createHmac('sha1', key)
+      .update(str)
+      .digest('base64')
+      .replace(/\//g, '_')
+      .replace(/\+/g, '-')
 }
 
 export default filmyBucket

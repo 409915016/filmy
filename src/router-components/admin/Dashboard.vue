@@ -36,7 +36,7 @@
 <script>
   import Category from '../../models/Category'
   import Album from '../../models/Album'
-  import { sideBarBus } from '../../entries/admin-main'
+  import { sideBarBus } from '@/pages/admin/app'
   export default {
     data () {
       return {
