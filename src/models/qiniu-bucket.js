@@ -17,7 +17,7 @@ function getKeys (password) {
     // return filmyBucket.getFile(`filmy/secret-${password}.json`)
     //   .then(body => JSON.parse(body))
     // return ak sk
-    return {ak, sk}
+    return Promise.resolve({ak, sk})
 }
 
 filmyBucket.fetchPutToken = function (password, key = null, keys = null, returnBody = null) {
@@ -38,8 +38,6 @@ filmyBucket.fetchPutToken = function (password, key = null, keys = null, returnB
 
           // Put token
           const token = `${ keys.ak }:${ encodeDigest }:${ signture }`
-
-          debugger
 
           return token
       })

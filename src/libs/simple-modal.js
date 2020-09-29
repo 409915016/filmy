@@ -24,7 +24,7 @@ if (_) {
 }
 
 export default function open (title, content, footer) {
-  const modal = new Modal(modalWrapper, {
+  const modal = new BSN.Modal(modalWrapper, {
     content: `
       <div class="modal-header">
         <h4 class="modal-title">${title}</h4>
@@ -37,5 +37,5 @@ export default function open (title, content, footer) {
       </div>
     `
   })
-  modal.open()
+  modal.show()
 }

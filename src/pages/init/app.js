@@ -51,7 +51,7 @@ new Vue({
         },
 
         submit (evt) {
-            new Button(evt.target, 'loading')
+            //new Button(evt.target, 'loading')
 
             filmyBucket.fetchPutToken(this.password, null, {
                 ak,
