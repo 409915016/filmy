@@ -1,6 +1,9 @@
 /* eslint-disable */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
+import 'sweetalert'
+
 import i18n from '@/libs/i18n'
 import Admin from '@/components/admin/Admin.vue'
 
@@ -15,14 +18,10 @@ import AlbumRoute from '@/router-components/admin/Album.vue'
 // Qiniu Cloud Storage Bucket Instance
 import filmyBucket from '@/models/qiniu-bucket'
 
-import 'sweetalert'
-
 Vue.filter('i18n', i18n)
-// Routing the router
 Vue.use(VueRouter)
 
-const routes = [
-    {
+const routes = [{
         path: '/',
         component: DashboardRoute
     },
@@ -62,8 +61,6 @@ const router = new VueRouter({
     routes
 })
 
-export const sideBarBus = new Vue()
-
 // Promisify sweetalert
 const swalp = (...args) => {
     return new Promise(resolve => {
@@ -73,34 +70,36 @@ const swalp = (...args) => {
 
 // Confirm the admin password
 swalp({
-    title: i18n('input password'),
-    type: 'input',
-    inputType: 'password',
-    showCancelButton: true,
-    closeOnConfirm: false,
-    animation: 'slide-from-top',
-    showLoaderOnConfirm: true
-})
-// Check the password
-  .then(password => filmyBucket.fetchPutToken(password))
-  .then(() => {
-      swal({
-          type: 'success',
-          title: i18n('welcome back'),
-          timer: 1500,
-          showConfirmButton: false
-      })
-      // router.start(Admin, '#admin')
-      new Vue({
-          el: '#admin',
-          router: router,
-          render: h => h(Admin)
-      })
-  })
-  .catch(() => {
-      console.log('fail')
-      swalp({
-          title: i18n('password wrong'),
-          type: 'error'
-      })
-  })
+        title: i18n('input password'),
+        type: 'input',
+        inputType: 'password',
+        showCancelButton: true,
+        closeOnConfirm: false,
+        animation: 'slide-from-top',
+        showLoaderOnConfirm: true
+    })
+    // Check the password
+    .then(password => filmyBucket.fetchPutToken(password))
+    .then(() => {
+        swal({
+            type: 'success',
+            title: i18n('welcome back'),
+            timer: 1500,
+            showConfirmButton: false
+        })
+
+        new Vue({
+            el: '#admin',
+            router,
+            render: h => h(Admin)
+        })
+    })
+    .catch(() => {
+        console.log('fail')
+        swalp({
+            title: i18n('password wrong'),
+            type: 'error'
+        })
+    });
+
+export const sideBarBus = new Vue()

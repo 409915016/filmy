@@ -1,6 +1,6 @@
 import qiniu  from 'qiniu.js'
 import crypto from 'crypto-browserify'
-import { bucketName, qiniuBucketDomainName,
+import { bucketName, qiniuBucketDomainName, adminPassword,
     qiniuAccessKey as ak, qiniuSecretKey as sk,
     qiniuUploadUrl as uploadUrl } from '@/configs'
 
@@ -14,10 +14,9 @@ const filmyBucket = qiniu.bucket(bucketName, {
 })
 
 function getKeys (password) {
-    // return filmyBucket.getFile(`filmy/secret-${password}.json`)
-    //   .then(body => JSON.parse(body))
-    // return ak sk
-    return Promise.resolve({ak, sk})
+    return new Promise((resolve, reject) =>{
+        adminPassword === password ? resolve({ak, sk}) : reject()
+    })
 }
 
 filmyBucket.fetchPutToken = function (password, key = null, keys = null, returnBody = null) {
