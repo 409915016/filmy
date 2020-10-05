@@ -2,27 +2,27 @@
   <div id="sidebar" ref="sidebar">
     <h2>Filmy Admin</h2>
 
-    <ul class="nav nav-pills nav-stacked">
-      <li role="presentation" :class="{ active: active == 'dashboard' }">
-        <router-link to="/dashboard">{{'dashboard' | i18n}}</router-link>
+    <ul class="nav nav-pills flex-column">
+      <li role="presentation" class="nav-item" :class="{ active: active == 'dashboard' }">
+        <router-link class="nav-link" active-class="active" to="/dashboard">{{'dashboard' | i18n}}</router-link>
       </li>
-      <li role="presentation" :class="{ active: active == 'settings' }">
-        <router-link to="/settings">{{'setting' | i18n}}</router-link>
+      <li role="presentation" class="nav-item" :class="{ active: active == 'settings' }">
+        <router-link class="nav-link" active-class="active" to="/settings">{{'setting' | i18n}}</router-link>
       </li>
-      <li role="presentation" :class="{ active: active == 'categories' }">
-        <router-link to="/categories">
+      <li role="presentation" class="nav-item" :class="{ active: active == 'categories' }">
+        <router-link class="nav-link" active-class="active" to="/categories">
           {{'category' | i18n}}
           <span class="badge">{{categories}}</span>
         </router-link>
       </li>
-      <li role="presentation" :class="{ active: active == 'albums' }">
-        <router-link to="/albums">
+      <li role="presentation" class="nav-item" :class="{ active: active == 'albums' }">
+        <router-link class="nav-link" active-class="active" to="/albums">
           {{'album' | i18n}}
           <span class="badge">{{albums}}</span>
         </router-link>
       </li>
       <hr/>
-      <li role="presentation"><a target="_blank" href="/">{{'go to home page' | i18n}}</a></li>
+      <li role="presentation" class="nav-item"><a target="_blank" class="nav-link" href="/">{{'go to home page' | i18n}}</a></li>
     </ul>
   </div>
 </template>
