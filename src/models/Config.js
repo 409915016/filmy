@@ -17,10 +17,9 @@ const Config = {
                   // 从数据库中获取核心配置数据
                   return min.hgetall(`${bucketName}:config`)
               } else {
-                  return filmyBucket.getFile(`${ bucketName }/config.json`)
+                   return filmyBucket.getFile(`config.json`)
                     .then(body => {
-                        debugger;
-                        JSON.parse(body)
+                        return Promise.resolve(JSON.parse(body))
                     })
                     .then(data => {
                         // 从七牛云获取到的数据存入数据库中
