@@ -57,21 +57,6 @@ new Vue({
                 ak,
                 sk
             })
-            // 由密码取得Token
-              .then(putToken => {
-                  const fileData = new Blob(['init ok'], {
-                      type: 'text/plain'
-                  })
-                  fileData.name = `init`
-                  return filmyBucket
-                    .putFile(
-                      fileData.name,
-                      fileData, {
-                          putToken
-                      }
-                    )
-                    .then(() => putToken)
-              })
               .then(putToken => {
                   // 取得壁纸地址
                   switch (this.background) {
