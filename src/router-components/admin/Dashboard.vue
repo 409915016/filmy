@@ -29,10 +29,8 @@
         v-bind:style="{ width: category.rate * 100 + '%' }"
       ></div>
     </div>
-    <div class="progress-labels">
+    <div class="progress-labels" v-for="category in categories" :key="category.id">
       <div
-        v-for="category in categories"
-        :key="category.id"
         v-if="category.rate > 0"
         class="progress-label"
         :style="{ width: category.rate * 100 + '%' }"
