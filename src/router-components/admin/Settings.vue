@@ -1,10 +1,13 @@
 <template>
-  <div id="config">
-    <div class="page-header">
-      <h1>{{'setting' | i18n}}</h1>
-    </div>
+  <div class="row">
 
-    <div class="row">
+    <div class="col-md-12">
+      <div class="page-header">
+        <h1>{{'setting' | i18n}}</h1>
+      </div>
+    </div>
+  
+    <div class="col-md-12">
       <form>
         <div class="form-group">
           <label for="title">{{'title' | i18n}}</label>
@@ -32,10 +35,16 @@
           </div>
         </div>
 
-        <button type="button" class="btn btn-primary" @click="submit" data-toggle="button"
-                v-bind:data-loading-text="'working' | i18n">{{'finish' | i18n}}
-        </button>
-        <button type="button" class="btn btn-default" @click="reset">{{'reset' | i18n}}</button>
+        <div class="btn-group mr-2" role="group">
+          <button type="button" class="btn btn-primary" @click="submit" data-toggle="button"
+                  v-bind:data-loading-text="'working' | i18n">{{'finish' | i18n}}
+          </button>
+        </div>
+
+        <div class="btn-group mr-2" role="group">
+          <button type="button" class="btn btn-default" @click="reset">{{'reset' | i18n}}</button>
+        </div>
+
       </form>
     </div>
   </div>
