@@ -26,24 +26,26 @@
           <label for="cover">{{ "cover" | i18n }}</label>
           <div class="category-cover img-rounded">
             <img :src="category.cover" v-if="category.cover" />
-            <img
-              src="//via.placeholder.com/500x213/?text=NO%20COVER"
-              v-else
-            />
+            <img src="//via.placeholder.com/500x213/?text=NO%20COVER" v-else />
           </div>
 
           <input type="file" ref="cover" />
         </div>
 
         <div class="form-group">
-          <button class="btn btn-primary" @click="submit">
-            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            {{ "finish" | i18n }}
-          </button>
-          <button class="btn btn-danger" @click="Delete" v-if="category._key">
-            <span class="glyphicon glyphicon-remove"></span>
-            {{ "delete" | i18n }}
-          </button>
+          <div class="btn-group mr-2" role="group">
+            <button class="btn btn-primary" @click="submit">
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              {{ "finish" | i18n }}
+            </button>
+          </div>
+  
+          <div class="btn-group mr-2" role="group">
+            <button class="btn btn-danger" @click="Delete" v-if="category._key">
+              <span class="glyphicon glyphicon-remove"></span>
+              {{ "delete" | i18n }}
+            </button>
+          </div>
         </div>
       </form>
     </div>

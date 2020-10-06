@@ -54,14 +54,19 @@
         </div>
 
         <div class="form-group">
-          <button class="btn btn-primary" @click="submit">
-            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-            {{ "finish" | i18n }}
-          </button>
-          <button class="btn btn-danger" @click="Delete" v-if="!newer">
-            <span class="glyphicon glyphicon-remove"></span>
-            {{ "delete" | i18n }}
-          </button>
+          <div class="btn-group mr-2" role="group">
+            <button class="btn btn-primary" @click="submit">
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              {{ "finish" | i18n }}
+            </button>
+          </div>
+
+          <div class="btn-group mr-2" role="group">
+            <button class="btn btn-danger" @click="Delete" v-if="!newer">
+              <span class="glyphicon glyphicon-remove"></span>
+              {{ "delete" | i18n }}
+            </button>
+          </div>
         </div>
       </form>
     </div>
