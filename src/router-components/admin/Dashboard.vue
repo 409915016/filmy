@@ -1,41 +1,49 @@
 <template>
-  <div id="dashboard">
-    <div class="page-header">
+  <div class="row">
+    <div class="col-md-12 page-header">
       <h1>{{ "dashboard" | i18n }}</h1>
     </div>
 
-    <div class="row">
-      <div class="col-md-4 dashboard-number">
-        <h1>{{ numbers.categories }}</h1>
-        <p>{{ "number of categories" | i18n }}</p>
-      </div>
-      <div class="col-md-4 dashboard-number">
-        <h1>{{ numbers.albums }}</h1>
-        <p>{{ "number of albums" | i18n }}</p>
-      </div>
-      <div class="col-md-4 dashboard-number">
-        <h1>{{ numbers.photos }}</h1>
-        <p>{{ "number of photos" | i18n }}</p>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-4 dashboard-number">
+          <h1>{{ numbers.categories }}</h1>
+          <p>{{ "number of categories" | i18n }}</p>
+        </div>
+        <div class="col-md-4 dashboard-number">
+          <h1>{{ numbers.albums }}</h1>
+          <p>{{ "number of albums" | i18n }}</p>
+        </div>
+        <div class="col-md-4 dashboard-number">
+          <h1>{{ numbers.photos }}</h1>
+          <p>{{ "number of photos" | i18n }}</p>
+        </div>
       </div>
     </div>
 
-    <h3>{{ "rates of categories" | i18n }}</h3>
+    <div class="col-md-12">
+      <h3>{{ "rates of categories" | i18n }}</h3>
 
-    <div class="progress">
+      <div class="progress">
+        <div
+          v-for="category in categories"
+          :key="category.id"
+          v-bind:class="[{ 'progress-bar': true }, pickBarColor()]"
+          v-bind:style="{ width: category.rate * 100 + '%' }"
+        ></div>
+      </div>
       <div
+        class="progress-labels"
         v-for="category in categories"
         :key="category.id"
-        v-bind:class="[{ 'progress-bar': true }, pickBarColor()]"
-        v-bind:style="{ width: category.rate * 100 + '%' }"
-      ></div>
-    </div>
-    <div class="progress-labels" v-for="category in categories" :key="category.id">
-      <div
-        v-if="category.rate > 0"
-        class="progress-label"
-        :style="{ width: category.rate * 100 + '%' }"
       >
-        {{ category.title }}
+        <div
+          v-if="category.rate > 0"
+          class="progress-label"
+          :style="{ width: category.rate * 100 + '%' }"
+        >
+          {{ category.title }}
+        </div>
       </div>
     </div>
   </div>
