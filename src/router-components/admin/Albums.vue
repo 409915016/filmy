@@ -33,11 +33,15 @@
     <div class="col-md-6">
       <form class="form-inline">
         <div class="form-group">
-          <input type="text" class="form-control" v-model="query" />
-          <button class="btn" @click="search">
-            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-            {{ "search" | i18n }}
-          </button>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" v-model="query" />
+            <div class="input-group-append">
+              <button class="btn" @click="search">
+                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                {{ "search" | i18n }}
+              </button>
+            </div>
+          </div>
         </div>
       </form>
     </div>
