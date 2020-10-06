@@ -39,14 +39,14 @@
           <div class="photo img-rounded" v-for="(photo, index) in album.photos">
             <span
               @click="removePhoto(index)"
-              class="remove-btn glyphicon glyphicon-remove"
+              class="remove-btn fa fa-remove"
               aria-hidden="true"
             ></span>
             <img :src="photo" />
           </div>
           <div class="photo">
             <span
-              class="add-btn glyphicon glyphicon-plus"
+              class="add-btn fa fa-plus"
               aria-hidden="true"
               ref="add"
             ></span>
@@ -56,14 +56,14 @@
         <div class="form-group">
           <div class="btn-group mr-2" role="group">
             <button class="btn btn-primary" @click="submit">
-              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              <span class="fa fa-check" aria-hidden="true"></span>
               {{ "finish" | i18n }}
             </button>
           </div>
 
           <div class="btn-group mr-2" role="group">
             <button class="btn btn-danger" @click="Delete" v-if="!newer">
-              <span class="glyphicon glyphicon-remove"></span>
+              <span class="fa fa-remove"></span>
               {{ "delete" | i18n }}
             </button>
           </div>

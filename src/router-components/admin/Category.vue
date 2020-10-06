@@ -35,14 +35,14 @@
         <div class="form-group">
           <div class="btn-group mr-2" role="group">
             <button class="btn btn-primary" @click="submit">
-              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              <span class="fa fa-check" aria-hidden="true"></span>
               {{ "finish" | i18n }}
             </button>
           </div>
-  
+
           <div class="btn-group mr-2" role="group">
             <button class="btn btn-danger" @click="Delete" v-if="category._key">
-              <span class="glyphicon glyphicon-remove"></span>
+              <span class="fa fa-remove"></span>
               {{ "delete" | i18n }}
             </button>
           </div>

@@ -8,7 +8,7 @@
       <form class="form-inline">
         <div class="form-group">
           <button @click="newer" class="btn btn-primary">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <span class="fa fa-plus" aria-hidden="true"></span>
             {{ "new" | i18n }}
           </button>
         </div>
@@ -24,7 +24,7 @@
             <div class="input-group-append">
               <button class="btn" @click="search">
                 <span
-                  class="glyphicon glyphicon-search"
+                  class="fa fa-search"
                   aria-hidden="true"
                 ></span>
                 {{ "search" | i18n }}
