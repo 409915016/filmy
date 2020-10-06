@@ -28,7 +28,7 @@
       >
         <router-link class="nav-link" active-class="active" to="/categories">
           {{ "category" | i18n }}
-          <span class="badge">{{ categories }}</span>
+          <span class="badge badge-pill badge-secondary">{{ categories }}</span>
         </router-link>
       </li>
       <li
@@ -38,7 +38,7 @@
       >
         <router-link class="nav-link" active-class="active" to="/albums">
           {{ "album" | i18n }}
-          <span class="badge">{{ albums }}</span>
+          <span class="badge badge-pill badge-secondary">{{ albums }}</span>
         </router-link>
       </li>
       <hr />
