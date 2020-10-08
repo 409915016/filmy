@@ -26,19 +26,19 @@ new Vue({
     },
 
     mounted () {
-        // Config.load(true)
-        //   .then(config => {
-        //       if (!config) return
-        //       const url = `${ location.protocol }//${ location.host }`
+        Config.load(true)
+          .then(config => {
+              if (!config) return
+              const url = `${ location.protocol }//${ location.host }`
 
-        //       openSimpleModal(
-        //         'Warning',
-        //         'This Filmy is already inited.',
-        //         `<a href="${ url }" class="btn btn-primary" role="button">OK</a>`
-        //       )
+              openSimpleModal(
+                'Warning',
+                'This Filmy is already inited.',
+                `<a href="${ url }" class="btn btn-primary" role="button">OK</a>`
+              )
 
-        //       this.$el.remove()
-        //   })
+              this.$el.remove()
+          })
     },
 
     methods: {
