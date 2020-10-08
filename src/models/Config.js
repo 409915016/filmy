@@ -8,6 +8,7 @@ import { bucketName, qiniuBucketDomainName, qiniuAccessKey, qiniuSecretKey, qini
 // 本地存在 核心配置数据 filmy:config 吗？
 // 存在 则获取本地数据
 // 不存在 则通过七牛云下载 config.json 然后保存在本地 filmy:config
+let _temp_config;
 
 const Config = {
     load (silent = false) {
@@ -17,7 +18,7 @@ const Config = {
                   // 从数据库中获取核心配置数据
                   return min.hgetall(`${bucketName}:config`)
               } else {
-                   return filmyBucket.getFile(`config.json`)
+                   return filmyBucket.getFile(`config.json?${new Date().getTime()}`)
                     .then(body => {
                         return Promise.resolve(JSON.parse(body))
                     })
@@ -68,7 +69,6 @@ const Config = {
               for (const key of Object.keys(update)) {
                   config[key] = update[key]
               }
-
               const fileData = new Blob([JSON.stringify(config)], {type: 'application/json'})
               fileData.name  = 'config.json'
 
@@ -79,6 +79,22 @@ const Config = {
                     putToken: putToken
                 }
               )
+          })
+          .then(({hash, key, config})=>{
+            config = config || {}
+
+            for (const key of Object.keys(update)) {
+                config[key] = update[key]
+            }
+
+            if(hash && key) {
+                try {
+                    min.hmset(`${bucketName}:config`, config)
+                } catch (err) {
+                    console.error(err)
+                }
+            }
+            return config
           })
     }
 }

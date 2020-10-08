@@ -51,9 +51,10 @@
 <script>
   import swal from 'sweetalert'
   import Vue from 'vue'
-  import filmyBucket from '../../models/qiniu-bucket'
-  import Config from '../../models/Config'
-  import openSimpleModal from '../../libs/simple-modal'
+  import filmyBucket from '@/models/qiniu-bucket'
+  import Config from '@/models/Config'
+  import openSimpleModal from '@/libs/simple-modal'
+
   export default {
     data () {
       return {
@@ -64,9 +65,7 @@
         defaultConfig: {}
       }
     },
-    mounted: function () {
-      this.$nextTick(function () {
-      })
+    beforeMount: function () {
       Config.load()
         .then(config => {
           this.defaultConfig = config
@@ -97,7 +96,6 @@
             .then(putToken => {
               switch (this.background) {
                 case 'url':
-                  console.log(this.background_url)
                   return this.background_url
                 // break
                 case 'file':
@@ -136,5 +134,5 @@
 </script>
 
 <style scoped>
-  @import url('https://cdn.jsdelivr.net/sweetalert/1.1.3/sweetalert.css');
+
 </style>
