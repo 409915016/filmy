@@ -10,7 +10,8 @@ const Category = Model.extend('category', {
   title: String,
   name: String,
   subtitle: String,
-  cover: String
+  cover: String,
+  _key: String
 })
 
 Category.setIndexerForColumn('title', ChineseStringIndexer)

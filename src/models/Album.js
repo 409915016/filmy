@@ -11,7 +11,8 @@ const Album = Model.extend('album', {
   content: String,
   category: String,
   created_at: Number,
-  photos: Array
+  photos: Array,
+  _key: String
 })
 
 // Album.setIndexerForColumn('title', ChineseStringIndexer)
