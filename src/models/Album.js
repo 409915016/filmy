@@ -36,7 +36,7 @@ Album.load = function () {
         ready = true
         return albums
       } else {
-        return filmyBucket.getFile('albums.json')
+        return filmyBucket.getFile(`albums.json?${new Date().getTime()}`)
           .then(body => JSON.parse(body))
       }
     })

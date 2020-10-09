@@ -26,7 +26,7 @@ Category.load = function () {
         ready = true
         return categories
       } else {
-        return filmyBucket.getFile('categories.json')
+        return filmyBucket.getFile(`categories.json?${new Date().getTime()}`)
           .then(body => JSON.parse(body))
       }
     })
@@ -67,6 +67,7 @@ Category.saveToCloud = function (password) {
         .then(data => [data, putToken])
     })
     .then(([data, putToken]) => {
+      debugger
       const fileData = new Blob([JSON.stringify(data)], {type: 'application/json'})
       fileData.name = 'categories.json'
 
