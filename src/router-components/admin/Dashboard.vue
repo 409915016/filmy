@@ -24,26 +24,29 @@
     <div class="col-md-12">
       <h3>{{ "rates of categories" | i18n }}</h3>
 
-      <div class="progress">
+      <div class="progress" style="height: 24px">
         <div
           v-for="category in categories"
           :key="category.id"
           v-bind:class="[{ 'progress-bar': true }, pickBarColor()]"
-          v-bind:style="{ width: category.rate * 100 + '%' }"
-        ></div>
+          v-bind:style="{ width: category.rate * 100 + '%'}"
+          role="progressbar"
+          :aria-valuenow="category.rate * 100"
+          aria-valuemin="0" aria-valuemax="100"
+        >{{ category.rate > 0 ? category.title : '' }}</div>
       </div>
-      <div
-        class="progress-labels"
-        v-for="category in categories"
-        :key="category.id"
-      >
-        <div
-          v-if="category.rate > 0"
-          class="progress-label"
-          :style="{ width: category.rate * 100 + '%' }"
-        >
-          {{ category.title }}
-        </div>
+<!--      <div-->
+<!--        class="progress-labels"-->
+<!--        v-for="category in categories"-->
+<!--        :key="category.id"-->
+<!--      >-->
+<!--        <div-->
+<!--          v-if="category.rate > 0"-->
+<!--          class="progress-label"-->
+<!--          :style="{ width: category.rate * 100 + '%' }"-->
+<!--        >-->
+<!--          {{ category.title }}-->
+<!--        </div>-->
       </div>
     </div>
   </div>
@@ -93,7 +96,7 @@ export default {
       const colors = ["success", "primary", "info", "warning", "danger"];
       return function pickOne() {
         const color =
-          "progress-bar-" +
+          "bg-" +
           colors[Math.round(Math.random() * (colors.length - 1))].toString();
         if (color === last) {
           return pickOne();
@@ -133,15 +136,15 @@ export default {
   font-size: 1.7rem;
 }
 
-.progress-labels {
-  margin-top: -15px;
-}
+/*.progress-labels {*/
+/*  margin-top: -15px;*/
+/*}*/
 
-.progress-label {
-  display: inline-block;
-  float: left;
-  font-size: 1.8rem;
-  line-height: 1.9rem;
-  text-align: center;
-}
+/*.progress-label {*/
+/*  display: inline-block;*/
+/*  float: left;*/
+/*  font-size: 1.8rem;*/
+/*  line-height: 1.9rem;*/
+/*  text-align: center;*/
+/*}*/
 </style>
