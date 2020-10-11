@@ -52,18 +52,11 @@
 </template>
 
 <script>
-import { sideBarBus } from "@/pages/admin/app";
+import { mapGetters } from 'vuex'
+import { CATEGORIES, ALBUMS }from "@/store/types"
 export default {
-  created() {
-    sideBarBus.$on("sideBarUpdate", (categories, albums) => {
-      this.categories = categories;
-      this.albums = albums;
-    });
-  },
   data() {
     return {
-      categories: 0,
-      albums: 0,
       active: "dashboard",
     };
   },
@@ -78,12 +71,10 @@ export default {
       offsetTop: 50,
     });
   },
-  methods: {
-    //      update (categories = this.categories, albums = this.albums) {
-    //        this.categories = categories
-    //        this.albums = albums
-    //      }
-  },
+  computed: {
+    ...mapGetters({categories: CATEGORIES, albums: ALBUMS})
+  }
+
 };
 </script>
 

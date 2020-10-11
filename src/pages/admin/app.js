@@ -18,6 +18,9 @@ import AlbumRoute from '@/router-components/admin/Album.vue'
 // Qiniu Cloud Storage Bucket Instance
 import filmyBucket from '@/models/qiniu-bucket'
 
+// Vuex store
+import store from '@/store'
+
 Vue.filter('i18n', i18n)
 Vue.use(VueRouter)
 
@@ -91,6 +94,7 @@ swalp({
         new Vue({
             el: '#admin',
             router,
+            store,
             render: h => h(Admin)
         })
     })

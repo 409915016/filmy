@@ -35,27 +35,15 @@
           aria-valuemin="0" aria-valuemax="100"
         >{{ category.rate > 0 ? category.title : '' }}</div>
       </div>
-<!--      <div-->
-<!--        class="progress-labels"-->
-<!--        v-for="category in categories"-->
-<!--        :key="category.id"-->
-<!--      >-->
-<!--        <div-->
-<!--          v-if="category.rate > 0"-->
-<!--          class="progress-label"-->
-<!--          :style="{ width: category.rate * 100 + '%' }"-->
-<!--        >-->
-<!--          {{ category.title }}-->
-<!--        </div>-->
-      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex"
 import Category from "../../models/Category";
 import Album from "../../models/Album";
-import { sideBarBus } from "@/pages/admin/app";
+import { NUMBER, COMMIT_CATEGORIES, COMMIT_ALBUMS } from "@/store/types"
 
 export default {
   data() {
@@ -84,13 +72,14 @@ export default {
           albums.length;
       }
       this.categories = categories;
-      //          this.$router.app.$refs.sidebar.update(
-      //            categories.length, albums.length
-      //          )
-      sideBarBus.$emit("sideBarUpdate", categories.length, albums.length);
+      this.$store.dispatch(`${NUMBER}/${COMMIT_CATEGORIES}`, categories.length)
+      this.$store.dispatch(`${NUMBER}/${COMMIT_ALBUMS}`, albums.length)
     });
   },
   methods: {
+    ...mapActions([
+      COMMIT_CATEGORIES, COMMIT_ALBUMS
+    ]),
     pickBarColor: (function () {
       let last = null;
       const colors = ["success", "primary", "info", "warning", "danger"];
