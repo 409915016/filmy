@@ -76,9 +76,12 @@ export default {
       this.newer = true;
       return;
     }
-    Category.search("name", this.$route.params.name).then(([category]) => {
-      this.model = category;
-      this.category = category.getCacheData();
+    Category
+      .search("name", this.$route.params.name)
+      .exec()
+      .then(([category]) => {
+        this.model = category;
+        this.category = category.getCacheData();
     });
   },
 
