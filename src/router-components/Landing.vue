@@ -1,7 +1,7 @@
 <template>
   <div id="landing">
-    <search-bar :router="$route.router"></search-bar>
-    <landing-view :config="config"></landing-view>
+    <SearchBar :router="$route.router"></SearchBar>
+    <LandingView :config="config"></LandingView>
     <Content :categories="categories"></Content>
   </div>
 </template>

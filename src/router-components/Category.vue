@@ -3,10 +3,10 @@
     <router-link class="back back-white" to="/"><span class="icon-arrow-left"></span>
       <span>{{ 'home' | i18n | toUpperCase }}</span></router-link>
 
-    <search-bar :router="$route.router" :options="{ category: $route.params.name }"></search-bar>
+    <SearchBar :router="$route.router" :options="{ category: $route.params.name }"></SearchBar>
     <Category :category="category" as-title="true"></Category>
 
-    <albums-list :albums="albums"></albums-list>
+    <AlbumsList :albums="albums"></AlbumsList>
   </div>
 </template>
 

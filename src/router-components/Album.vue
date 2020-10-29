@@ -6,8 +6,8 @@
     </router-link>
     <h1 id="album-title">{{album.title}}</h1>
 
-    <album-info :content="album.content"></album-info>
-    <photos-list :photos="album.photos"></photos-list>
+    <AlbumInfo :content="album.content"></AlbumInfo>
+    <PhotosList :photos="album.photos"></PhotosList>
   </div>
 </template>
 
