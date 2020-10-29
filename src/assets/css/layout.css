@@ -18,11 +18,11 @@ html, body {
 
 @font-face {
   font-family: "casper-icons";
-  src:url("/assets/fonts/casper-icons.eot?v=1");
-  src:url("/assets/fonts/casper-icons.eot?v=1#iefix") format("embedded-opentype"),
-  url("/assets/fonts/casper-icons.woff?v=1") format("woff"),
-  url("/assets/fonts/casper-icons.ttf?v=1") format("truetype"),
-  url("/assets/fonts/casper-icons.svg?v=1#icons") format("svg");
+  src:url("../fonts/casper-icons.eot?v=1");
+  src:url("../fonts/casper-icons.eot?v=1#iefix") format("embedded-opentype"),
+  url("../fonts/casper-icons.woff?v=1") format("woff"),
+  url("../fonts/casper-icons.ttf?v=1") format("truetype"),
+  url("../fonts/casper-icons.svg?v=1#icons") format("svg");
   font-weight: normal;
   font-style: normal;
 }

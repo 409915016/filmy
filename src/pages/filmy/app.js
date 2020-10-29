@@ -8,6 +8,8 @@ import CategoryRoute from '@/router-components/Category.vue'
 import AlbumRoute from '@/router-components/Album.vue'
 import SearchRoute from '@/router-components/Search.vue'
 
+import '@/assets/css/layout.css'
+
 Vue.use(VueRouter)
 
 const routes = [
