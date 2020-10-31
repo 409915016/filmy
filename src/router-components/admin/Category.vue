@@ -152,8 +152,10 @@ export default {
             title: i18n("update succeed"),
             type: "success",
           });
+          this.$router.push("/categories");
         })
         .catch((err) => {
+          console.error(err)
           swal({
             title: err.message || i18n("something went wrong"),
             type: "error",
