@@ -39,22 +39,22 @@ const router = new VueRouter({
     routes
 })
 
+Vue.filter('i18n', i18n)
+Vue.filter('toUpperCase', str => str.toUpperCase())
+Vue.filter('toLowerCase', str => str.toLowerCase())
+Vue.filter('firstLetterUpperCase', str =>
+    str
+        .replace(/([.!?;]+)/g, '$1|-|-|')
+        .split('|-|-|')
+        .map(s => s.trim())
+        .filter(Boolean)
+        .map(s => s[0].toUpperCase() + s.slice(1))
+        .reduce((a, b) => `${a} ${b}`)
+)
+
 new Vue({
     el: '#app',
     router: router,
     template: '<router-view></router-view>'
     // render: h => h(Admin)
 })
-
-Vue.filter('i18n', i18n)
-Vue.filter('toUpperCase', str => str.toUpperCase())
-Vue.filter('toLowerCase', str => str.toLowerCase())
-Vue.filter('firstLetterUpperCase', str =>
-  str
-    .replace(/([.!?;]+)/g, '$1|-|-|')
-    .split('|-|-|')
-    .map(s => s.trim())
-    .filter(Boolean)
-    .map(s => s[0].toUpperCase() + s.slice(1))
-    .reduce((a, b) => `${a} ${b}`)
-)
