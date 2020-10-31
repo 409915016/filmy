@@ -29,7 +29,7 @@
         .then(res => res.getCacheData())
         .then(album => {
           this.album = album
-          return Category.search('name', album.category).exec()
+          return Category.search('name', album.category)
         })
         .then(([category]) => {
           this.$emit('update-title', `${this.album.title} - ${category.getCacheData().title}`)

@@ -78,7 +78,6 @@ export default {
     }
     Category
       .search("name", this.$route.params.name)
-      .exec()
       .then(([category]) => {
         this.model = category;
         this.category = category.getCacheData();

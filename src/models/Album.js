@@ -24,7 +24,7 @@ let ready = false
 
 Album.fetchByCategory = function (categoryName) {
   return Album.loadIfNotInit()
-    .then(() => Album.search('category', categoryName).exec())
+    .then(() => Album.search('category', categoryName))
     .then(albums => albums.sort((a, b) => {
       return a.getCacheData().created_at < b.getCacheData().created_at
     }))

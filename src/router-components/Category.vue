@@ -27,7 +27,7 @@
     mounted () {
       Promise.all([
         Category.loadIfNotInit()
-          .then(() => Category.search('name', this.$route.params.name).exec())
+          .then(() => Category.search('name', this.$route.params.name))
           .then(result => result[0]),
         Album.fetchByCategory(this.$route.params.name)
       ])
