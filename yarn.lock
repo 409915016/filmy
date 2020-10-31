@@ -5391,10 +5391,10 @@ mimic-fn@^2.1.0:
   resolved "https://registry.npm.taobao.org/mimic-fn/download/mimic-fn-2.1.0.tgz?cache=0&sync_timestamp=1596093969209&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmimic-fn%2Fdownload%2Fmimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
   integrity sha1-ftLCzMyvhNP/y3pptXcR/CCDQBs=
 
-min-model@^0.2.8:
-  version "0.2.8"
-  resolved "https://registry.npm.taobao.org/min-model/download/min-model-0.2.8.tgz#1d20ee1c38ae4620d6077fd99b431f5ed66f320d"
-  integrity sha1-HSDuHDiuRiDWB3/Zm0MfXtZvMg0=
+min-model@^0.1.11:
+  version "0.1.11"
+  resolved "https://registry.npm.taobao.org/min-model/download/min-model-0.1.11.tgz#d3d5b5c48948bb0dc43e5d2cb40509ba0b9581c7"
+  integrity sha1-09W1xIlIuw3EPl0stAUJuguVgcc=
 
 min@^0.2.2:
   version "0.2.2"
