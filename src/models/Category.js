@@ -68,7 +68,6 @@ Category.saveToCloud = function (password) {
         .then(data => [data, putToken])
     })
     .then(([data, putToken]) => {
-      debugger
       const fileData = new Blob([JSON.stringify(data)], {type: 'application/json'})
       fileData.name = 'categories.json'
 
