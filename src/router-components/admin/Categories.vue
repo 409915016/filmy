@@ -12,7 +12,7 @@
             {{ "new" | i18n }}
           </button>
         </div>
-       
+
       </form>
     </div>
 
@@ -39,6 +39,7 @@
       <router-link
         class="category img-rounded"
         v-for="category in categories"
+        :key="category._key"
         :to="{ path: `/categories/${category.name}` }"
       >
         <h1 class="category-title">
