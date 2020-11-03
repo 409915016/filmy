@@ -236,7 +236,7 @@ export default {
             title: i18n("update succeed"),
             type: "success",
           });
-          this.$route.router.go("/albums");
+          this.$router.go(-1);
         })
         .catch((err) => {
           swal({
