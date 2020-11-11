@@ -1,5 +1,3 @@
-
-
 <p align="center">
   <a href="http://oq1ecwbwl.bkt.clouddn.com">
     <img src="http://job.misaka.im/code/indeximage/filmy.png" width=800 height=426>
@@ -22,6 +20,8 @@
 > 在这一章中，我们会以一个名为 Filmy 的个人摄影网站为开发项目，从整体功能设计、功能模块分隔等角度详细说明其开发过程。——《实战 ES2015》 P129
 
 ## Table of contents
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2F409915016%2Ffilmy.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2F409915016%2Ffilmy?ref=badge_shield)
+
 
  - [Why](#why)
  - [Quick start](#quick-start)
@@ -145,3 +145,7 @@ uploadUrl: 'up-z2.qiniu.com'
 
 
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2F409915016%2Ffilmy.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2F409915016%2Ffilmy?ref=badge_large)
