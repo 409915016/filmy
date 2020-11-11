@@ -2765,9 +2765,9 @@ lazy-cache@^1.0.3:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/lazy-cache/-/lazy-cache-1.0.4.tgz#a1d78fc3a50474cb80845d3b3b6e1da49a446e8e"
 
-lazysizes@^4.0.0-rc3:
-  version "4.0.0-rc3"
-  resolved "https://registry.yarnpkg.com/lazysizes/-/lazysizes-4.0.0-rc3.tgz#f81a0794b920d8464d415445234cfe4abcd5dbd2"
+lazysizes@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/lazysizes/-/lazysizes-5.2.1.tgz#f450e36a995efb5817acb8c904f3d2f2efc29ffa"
 
 lcid@^1.0.0:
   version "1.0.0"
