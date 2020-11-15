@@ -17,6 +17,7 @@
           <select class="form-control" v-model="album.category">
             <option
               v-for="category in categories"
+              :key="category._key"
               :selected="category.selected"
               :value="category.name"
             >
