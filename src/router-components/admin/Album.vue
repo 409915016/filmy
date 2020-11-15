@@ -56,14 +56,14 @@
 
         <div class="form-group">
           <div class="btn-group mr-2" role="group">
-            <button class="btn btn-primary" @click="submit">
+            <button class="btn btn-primary" type="button" @click="submit">
               <span class="fa fa-check" aria-hidden="true"></span>
               {{ "finish" | i18n }}
             </button>
           </div>
 
           <div class="btn-group mr-2" role="group">
-            <button class="btn btn-danger" @click="Delete" v-if="!newer">
+            <button class="btn btn-danger" type="button" @click="Delete" v-if="!newer">
               <span class="fa fa-remove"></span>
               {{ "delete" | i18n }}
             </button>

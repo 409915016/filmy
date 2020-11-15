@@ -22,7 +22,7 @@
           <div class="input-group mb-3">
             <input type="text" class="form-control" v-model="query" />
             <div class="input-group-append">
-              <button class="btn" @click="search">
+              <button class="btn" type="button" @click="search">
                 <span
                   class="fa fa-search"
                   aria-hidden="true"

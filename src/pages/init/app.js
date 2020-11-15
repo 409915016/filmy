@@ -107,7 +107,7 @@ new Vue({
                   openSimpleModal(
                     'Error',
                     err.message,
-                    `<button class="btn btn-primary" role="button">OK</button>`
+                    `<button class="btn btn-primary" type="button" role="button">OK</button>`
                   )
               })
         }
