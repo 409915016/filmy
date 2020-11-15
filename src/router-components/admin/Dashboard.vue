@@ -44,10 +44,12 @@ import { mapActions } from "vuex"
 import Category from "../../models/Category";
 import Album from "../../models/Album";
 import { NUMBER, COMMIT_CATEGORIES, COMMIT_ALBUMS } from "@/store/types"
+const NUM_ZERO = 0
 
 export default {
   data() {
     return {
+      NUM_ZERO,
       numbers: {
         categories: 0,
         albums: 0,
@@ -65,7 +67,7 @@ export default {
       this.numbers.albums = albums.length;
       this.numbers.photos = albums
         .map((album) => album.photos.length)
-        .reduce((a, b) => a + b);
+        .reduce((a, b) => a + b, NUM_ZERO);
       for (const category of categories) {
         category.rate =
           albums.filter((album) => album.category === category.name).length /
