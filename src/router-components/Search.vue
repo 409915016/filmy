@@ -1,6 +1,6 @@
 <template>
   <div id="search-result">
-    <search-bar :query="decodeURIComponent($route.params.query)" static="true"></search-bar>
+    <SearchBar :query="decodeURIComponent($route.params.query)" :static="true"></SearchBar>
 
     <div class="margin-space"></div>
 
