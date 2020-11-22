@@ -67,9 +67,9 @@ export default {
       this.active = to.path.split("/")[1];
       next();
     });
-    new Affix(this.$refs.sidebar, {
-      offsetTop: 50,
-    });
+    // new Affix(this.$refs.sidebar, {
+    //   offsetTop: 50,
+    // });
   },
   computed: {
     ...mapGetters({categories: CATEGORIES, albums: ALBUMS})
