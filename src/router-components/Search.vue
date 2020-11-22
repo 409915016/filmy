@@ -66,13 +66,16 @@
         }
         Promise.all(promises)
           .then(([ categories, albums ]) => {
-            if (albums) {
-              this.categories = categories.map(n => n.getCacheData())
+            if (categories) {
+              this.categories = categories.map(n => n)
               this.albums = albums.map(n => n.getCacheData())
             } else {
-              this.albums = categories.map(n => n.getCacheData())
+              this.albums = albums.map(n => n.getCacheData())
             }
           })
+            .catch(err =>{
+                console.error(err)
+            })
       }
     },
     components: {
