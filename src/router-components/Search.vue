@@ -67,7 +67,7 @@
         Promise.all(promises)
           .then(([ categories, albums ]) => {
             if (categories) {
-              this.categories = categories.map(n => n)
+              this.categories = categories.map(n => n.getCacheData())
               this.albums = albums.map(n => n.getCacheData())
             } else {
               this.albums = albums.map(n => n.getCacheData())

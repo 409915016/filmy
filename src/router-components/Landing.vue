@@ -31,7 +31,7 @@
             ])
                 .then(([config, categories]) => {
                     this.config     = config
-                    this.categories = categories
+                    this.categories = categories.map(i => i.getCacheData())
                     this.$emit('update-blog-title', this.config.title)
                     this.$emit('update-title', '')
                 })

@@ -1,9 +1,10 @@
 <template>
   <div id="content">
     <div id="content-categories">
-      <router-link v-for="category in categories" :to="{ path: '/category/' + category.getCacheData('name') }">
-        <Category :category="category.getCacheData()">
-        </Category>
+      <router-link v-for="category in categories"
+                   :key="category._key"
+                   :to="{ path: `/category/${category.name}'` }">
+            <Category :category="category"/>
       </router-link>
     </div>
   </div>
