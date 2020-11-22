@@ -6,11 +6,17 @@ class ChineseStringIndexer extends Model.BaseIndexer {
   }
 
   indexMapper (val) {
+    if(!val) return ""
     const url =
-      `http://api.pullword.com/get?source=${encodeURIComponent(val)}&threshold=0.5&json=1`
+      `//api.pullword.com/get.php?source=${encodeURIComponent(val)}&param1=0.8&param2=0&json=1`
 
-    return fetch(url, {method: 'POST'})
-      .then(res => res.json())
+    return fetch(url, {method: 'GET'})
+      .then(res => {
+          return (res.json())
+      })
+      .then(json =>{
+          return json.map(i=> i.t)
+      })
       .catch(() => [val])
   }
 }

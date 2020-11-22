@@ -1,41 +1,65 @@
 <template>
   <div id="search-bar" :class="{ active: active, static: static }">
     <span id="search-icon" class="icon" @click="openOrSearch">&#xe600;</span>
-    <input type="search" id="search-query" v-model="query" @keyup.enter="openOrSearch">
+    <input type="search" id="search-query" v-model="text" @keyup.enter="openOrSearch">
     <span id="close-icon" class="icon" @click="close" v-if="!static">&#xe601;</span>
   </div>
 </template>
 
 <script>
   export default {
-    props: [ 'router', 'options', 'query', 'static' ],
+    props: {
+        value: String,
+        options: Object,
+        static: {
+            type: Boolean,
+            default: false
+        }
+    },
+
     data () {
       return {
-        // Search Bar Toggle Style
+        text: '',
+        query: '',
         active: this.static ? 1 : false
       }
     },
+
     methods: {
       openOrSearch () {
         if (this.static) return this.search()
         if (!this.active) {
           this.active = true
         } else {
-          // Use Vue-Router to redirect the request
-          this.router.go({
-            path: `/search/${encodeURIComponent(this.query)}`,
-            query: this.options || {}
-          })
+            this.$emit('on-change', {
+                value: this.text,
+                query: this.options || {}
+            })
         }
       },
+
       close () {
         this.active = false
-        this.query = ''
+        this.text = ''
       },
+
       search () {
-        this.$dispatch('search', this.query)
+        this.$emit('on-change', {
+            value: this.text,
+            query: this.options || {}
+        })
       }
-    }
+    },
+      watch: {
+          value: {
+              handler(val) {
+                  if (!val) return
+                  this.text = val
+                  this.search();
+              },
+              immediate: true
+          }
+      }
   }
 </script>
 

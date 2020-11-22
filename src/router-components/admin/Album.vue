@@ -91,6 +91,9 @@ export default {
   data() {
     return {
       album: {
+        title:'',
+        content: '',
+        category: '',
         photos: [],
       },
       model: null,
@@ -110,6 +113,7 @@ export default {
     }
     Category.dump().then((categories) => (this.categories = categories));
     if (this.$route.params.key === "new") return (this.newer = true);
+    //if edit album will keep run the next code
     Album.fetch(this.$route.params.key).then((album) => {
       if (this.categories.length > 0) {
         this.categories
@@ -190,7 +194,7 @@ export default {
           }
           return Promise.all(
             ["title", "category", "content"].map((key) => {
-              return this.model.set(key, this.album[key]);
+              return this.model.set(key, this.album[key]);//model is Album
             })
           )
             .then(() => this.model.set("photos", photos))
@@ -205,6 +209,7 @@ export default {
           });
         })
         .catch((err) => {
+          console.error(err)
           swal({
             title: err.message || i18n("something went wrong"),
             type: "error",

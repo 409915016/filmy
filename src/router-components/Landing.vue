@@ -1,6 +1,8 @@
 <template>
     <div id="landing">
-        <SearchBar :router="$route.router"></SearchBar>
+        <SearchBar
+            :value="searchText"
+            @on-change="onSearchChange"/>
         <LandingView :config="config"></LandingView>
         <Content :categories="categories"></Content>
     </div>
@@ -17,6 +19,7 @@
         name      : 'LandingPage',
         data() {
             return {
+                searchText: '',
                 config    : {},
                 categories: []
             }
@@ -32,6 +35,14 @@
                     this.$emit('update-blog-title', this.config.title)
                     this.$emit('update-title', '')
                 })
+        },
+        methods: {
+            onSearchChange({value, query}) {
+                this.$router.push({
+                    path: `/search/${encodeURIComponent(value)}`,
+                    query
+                })
+            }
         },
         components: {
             LandingView,

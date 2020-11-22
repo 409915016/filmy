@@ -1,6 +1,10 @@
 <template>
   <div id="search-result">
-    <SearchBar :query="decodeURIComponent($route.params.query)" :static="true"></SearchBar>
+    <SearchBar
+        :value="searchText"
+        :query="decodeURIComponent($route.params.query)"
+        @on-change="onSearchChange"
+        :static="true" />
 
     <div class="margin-space"></div>
 
@@ -23,16 +27,19 @@
     name: 'SearchPage',
     data () {
       return {
+        searchText: '',
         categories: [],
         albums: []
       }
     },
-    mounted () {
-      const query = decodeURIComponent(this.$route.params.query)
-      this.search(query)
-      this.$on('search', query => this.search(query))
+    beforeRouteEnter (to, from, next) {
+      const query = decodeURIComponent(to.params.query)
+        next(vm => vm.searchText = query)
     },
     methods: {
+      onSearchChange({value, query}) {
+        this.search(value)
+      },
       search (query) {
         let promises = []
         if (!this.$route.query.category) {
@@ -41,8 +48,7 @@
               Category.search('title', query),
               Category.search('name', query)
             ])
-              .then(([ a, b ]) => a.concat(b))
-              .then(result => result.map(n => new Category(n._key, n))),
+              .then(([ a, b ]) => a.concat(b)),
             Promise.all([
               Album.search('title', query),
               Album.search('content', query)
