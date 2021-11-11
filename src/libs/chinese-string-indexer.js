@@ -1,4 +1,5 @@
 import Model from 'min-model'
+import { pullWordAPIHost } from '@/configs'
 
 class ChineseStringIndexer extends Model.BaseIndexer {
   get async () {
@@ -8,7 +9,7 @@ class ChineseStringIndexer extends Model.BaseIndexer {
   indexMapper (val) {
     if(!val) return ""
     const url =
-      `//api.pullword.com/get.php?source=${encodeURIComponent(val)}&param1=0.8&param2=0&json=1`
+      `//${pullWordAPIHost}/get.php?source=${encodeURIComponent(val)}&param1=0.8&param2=0&json=1`
 
     return fetch(url, {method: 'GET'})
       .then(res => {
