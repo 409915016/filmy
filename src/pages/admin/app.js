@@ -105,5 +105,3 @@ swalp({
             type: 'error'
         })
     });
-
-export const sideBarBus = new Vue()
